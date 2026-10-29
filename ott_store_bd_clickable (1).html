@@ -43,7 +43,118 @@ h2{font-size:24px;margin:30px 0 12px} .hint{color:var(--muted);margin-top:-5px}
 <main class="wrap">
 <h2>🔥 Choose Your Subscription</h2>
 <p class="hint">প্রতিটি প্যাকেজের পাশে ক্লিক করে নির্বাচন করুন। একাধিক প্যাকেজও নির্বাচন করতে পারবেন।</p>
-<div class="grid" id="productGrid"></div>
+<div class="grid" id="productGrid"></div><!-- Netflix Premium Section Start -->
+<div class="product-section" style="margin: 40px auto; text-align: center; max-width: 420px; font-family: Arial, sans-serif;">
+    <h2 class="product-title" style="color: #ffffff; font-size: 26px; margin-bottom: 15px; font-weight: bold; text-align: center;">Netflix Premium</h2>
+    
+    <div class="pricing-card" style="background-color: #050505; border: 1px solid #1a080c; border-radius: 16px; width: 100%; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); text-align: left;">
+        
+        <!-- মাসের ফিল্টার বাটনসমূহ -->
+        <div class="duration-tabs" style="display: flex; gap: 8px; margin-bottom: 25px;">
+            <button class="netflix-tab active" onclick="changeNetflixDuration(1, this)">1 Month</button>
+            <button class="netflix-tab" onclick="changeNetflixDuration(2, this)">2 Months</button>
+            <button class="netflix-tab" onclick="changeNetflixDuration(3, this)">3 Months</button>
+        </div>
+
+        <!-- মূল প্রাইস ডিসপ্লে (১ স্ক্রিনের দাম শুরুতে দেখাবে) -->
+        <div class="main-price" id="netflix-display-price" style="font-size: 46px; font-weight: 800; color: #e50914; margin-bottom: 20px; letter-spacing: -1px;">৳350</div>
+
+        <div class="section-title" style="color: #e50914; font-size: 14px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase;"><span>▲</span> Multi-Screen Plans</div>
+
+        <!-- প্ল্যান লিস্ট কন্টেইনার (এখানে ১ থেকে ৫ স্ক্রিন জাভাস্ক্রিপ্ট দিয়ে লোড হবে) -->
+        <div class="plan-list" id="netflix-plan-container" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px;"></div>
+
+        <!-- ফিচার লিস্ট -->
+        <div class="features-toggle" style="color: #8e8e93; font-size: 14px; margin-bottom: 15px; font-weight: bold;">▲ Hide Features</div>
+        <div class="feature-list" style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="feature-item"><span class="checkmark">✓</span> 4K Ultra HD (Premium Quality)</div>
+            <div class="feature-item"><span class="checkmark">✓</span> Shared / Personal Profiles</div>
+            <div class="feature-item"><span class="checkmark">✓</span> Instant Delivery via WhatsApp</div>
+            <div class="feature-item"><span class="checkmark">✓</span> Private Profile Lock Available</div>
+            <div class="feature-item"><span class="checkmark">✓</span> 9AM-12AM Active Support</div>
+            <div class="feature-item"><span class="checkmark">✓</span> 100% Replacement Warranty</div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .netflix-tab { background-color: #1c1c1e; color: #8e8e93; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+    .netflix-tab.active { background-color: #e50914; color: #ffffff; }
+    .plan-item { background-color: #121214; display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-radius: 10px; border: 1px solid #1c1c1e; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; }
+    .plan-item:hover { transform: scale(1.02); border-color: #e50914; }
+    .plan-name { color: #a5a5a8; font-size: 15px; }
+    .plan-price { color: #e50914; font-weight: bold; font-size: 16px; }
+    .feature-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #aeaeae; }
+    .checkmark { color: #e50914; font-weight: bold; }
+</style>
+
+<script>
+    // ১ মাস থেকে ৩ মাস মেয়াদের ১ থেকে ৫ স্ক্রিনের সম্পূর্ণ ডাটাবেজ
+    const netflixPriceData = {
+        1: [
+            { name: "1 Screen / 1 Month", price: 350 },
+            { name: "2 Screen / 1 Month", price: 680 },
+            { name: "3 Screen / 1 Month", price: 1020 },
+            { name: "4 Screen / 1 Month", price: 1350 },
+            { name: "5 Screen / 1 Month", price: 1700 }
+        ],
+        2: [
+            { name: "1 Screen / 2 Months", price: 650 },
+            { name: "2 Screen / 2 Months", price: 1250 },
+            { name: "3 Screen / 2 Months", price: 1850 },
+            { name: "4 Screen / 2 Months", price: 2450 },
+            { name: "5 Screen / 2 Months", price: 3000 }
+        ],
+        3: [
+            { name: "1 Screen / 3 Months", price: 950 },
+            { name: "2 Screen / 3 Months", price: 1800 },
+            { name: "3 Screen / 3 Months", price: 2650 },
+            { name: "4 Screen / 3 Months", price: 3500 },
+            { name: "5 Screen / 3 Months", price: 4200 }
+        ]
+    };
+
+    function changeNetflixDuration(months, buttonComponent) {
+        document.querySelectorAll('.netflix-tab').forEach(tab => tab.classList.remove('active'));
+        buttonComponent.classList.add('active');
+
+        const container = document.getElementById('netflix-plan-container');
+        if(!container) return;
+        container.innerHTML = '';
+
+        // ডাটাবেজ থেকে ১-৫ স্ক্রিন লুপ আকারে রেন্ডার করা
+        netflixPriceData[months].forEach((item) => {
+            const planRow = document.createElement('div');
+            planRow.className = 'plan-item';
+            planRow.innerHTML = `<span class="plan-name">${item.name}</span><span class="plan-price">৳${item.price}</span>`;
+            
+            // কাস্টমার যেকোনো স্ক্রিনে ক্লিক করলে যা হবে
+            planRow.onclick = () => {
+                document.getElementById('netflix-display-price').innerText = `৳${item.price}`;
+                
+                // আপনার সাইটের বর্তমান চেকআউট বক্সের সাথে কানেক্ট করার কোড
+                const productsSelect = document.getElementById('selectedItems');
+                if(productsSelect) {
+                    productsSelect.innerHTML = `<div class="selected-item" data-price="${item.price}">Netflix ${item.name} - ৳${item.price}</div>`;
+                    const totalContainer = document.getElementById('total');
+                    if(totalContainer) totalContainer.innerText = `৳${item.price}`;
+                }
+            };
+            container.appendChild(planRow);
+        });
+
+        // ডিফল্টভাবে প্রথম প্যাকের প্রাইস ওপরের বড় বক্সে দেখাবে
+        document.getElementById('netflix-display-price').innerText = `৳${netflixPriceData[months][0].price}`;
+    }
+
+    // পেজ লোড হওয়ার পর স্ক্রিপ্টটি রান করার জন্য টাইমার
+    setTimeout(() => {
+        const defaultTab = document.querySelector('.netflix-tab.active');
+        if (defaultTab) changeNetflixDuration(1, defaultTab);
+    }, 200);
+</script>
+<!-- Netflix Premium Section End -->
+
 <h2>🛒 Checkout & Payment</h2>
 <div class="checkout">
 <section class="panel">
