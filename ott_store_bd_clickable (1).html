@@ -244,8 +244,122 @@ p,
 </main>
 <footer>© <span id="year"></span> OTT Store BD • All rights reserved</footer>
 <script>
-const products = [{"name": "Netflix", "plans": [{"duration": "1 Month", "price": 350}, {"duration": "2 Month", "price": 650}, {"duration": "3 Month", "price": 1000}]}, {"name": "Amazon Prime Video", "plans": [{"duration": "1 Month", "price": 120}, {"duration": "3 Month", "price": 300}, {"duration": "12 Month", "price": 1000}]}, {"name": "Crunchyroll", "plans": [{"duration": "1 Month", "price": 160}, {"duration": "3 Month", "price": 480}, {"duration": "12 Month", "price": 1500}]}, {"name": "YouTube Premium", "plans": [{"duration": "1 Month", "price": 80}]}, {"name": "Chorki", "plans": [{"duration": "1 Month", "price": 150}, {"duration": "3 Month", "price": 400}, {"duration": "6 Month", "price": 800}]}, {"name": "Hoichoi", "plans": [{"duration": "1 Month", "price": 180}, {"duration": "3 Month", "price": 500}, {"duration": "6 Month", "price": 900}]}, {"name": "Disney+", "plans": [{"duration": "1 Month", "price": 300}, {"duration": "3 Month", "price": 800}, {"duration": "6 Month", "price": 1500}, {"duration": "12 Month", "price": 2800}]}, {"name": "Canva Pro", "plans": [{"duration": "1 Month", "price": 30}, {"duration": "3 Month", "price": 90}, {"duration": "6 Month", "price": 180}, {"duration": "12 Month", "price": 360}]}, {"name": "Hulu", "plans": [{"duration": "1 Month", "price": 200}, {"duration": "3 Month", "price": 550}, {"duration": "6 Month", "price": 1000}, {"duration": "12 Month", "price": 1800}]}, {"name": "Ullu", "plans": [{"duration": "1 Month", "price": 230}, {"duration": "3 Month", "price": 550}, {"duration": "6 Month", "price": 1200}, {"duration": "12 Month", "price": 1800}]}, {"name": "Kooku", "plans": [{"duration": "1 Month", "price": 230}, {"duration": "3 Month", "price": 550}, {"duration": "6 Month", "price": 1200}, {"duration": "12 Month", "price": 1800}]}, {"name": "HBO Max", "plans": [{"duration": "1 Month", "price": 300}, {"duration": "3 Month", "price": 800}, {"duration": "6 Month", "price": 1500}, {"duration": "12 Month", "price": 2800}]}, {"name": "CapCut Pro (1 Device)", "plans": [{"duration": "1 Month", "price": 270}, {"duration": "6 Month", "price": 1700}, {"duration": "12 Month", "price": 2000}]}];
-const grid = document.getElementById('productGrid');
+const products = [
+  {
+    name: "Netflix Multi Screen",
+    plans: [
+      {duration: "1 Screen / 1 Month", price: 350},
+      {duration: "2 Screen / 1 Month", price: 650},
+      {duration: "3 Screen / 1 Month", price: 1020},
+      {duration: "4 Screen / 1 Month", price: 1350},
+      {duration: "5 Screen / 1 Month", price: 1700}
+    ],
+    features: [
+      "4K Ultra HD", "Shared Access", "Instant Delivery",
+      "Private Lock", "9AM-12AM Free Support",
+      "100% Replacement Guarantee"
+    ]
+  },
+  {
+    name: "Crunchyroll",
+    plans: [
+      {duration: "1 Month", price: 160},
+      {duration: "3 Months", price: 480},
+      {duration: "6 Months", price: 800},
+      {duration: "12 Months", price: 1500}
+    ],
+    features: ["4K Ultra HD", "Shared Access", "Instant Delivery", "Private Lock", "9AM-12AM Free Support", "100% Replacement Guarantee", "Ad-Free"]
+  },
+  {
+    name: "Chorki",
+    plans: [
+      {duration: "1 Month", price: 150},
+      {duration: "3 Months", price: 400},
+      {duration: "6 Months", price: 800}
+    ],
+    features: ["4K Ultra HD", "Shared Access", "Instant Delivery", "Private Lock", "9AM-12AM Free Support", "100% Replacement Guarantee", "Ad-Free"]
+  },
+  {
+    name: "Hoichoi",
+    plans: [
+      {duration: "1 Month", price: 180},
+      {duration: "3 Months", price: 500},
+      {duration: "6 Months", price: 900}
+    ],
+    features: ["4K Available", "Shared Access", "Instant Delivery", "Private Lock", "9AM-12AM Free Support", "100% Replacement Guarantee", "Ad-Free"]
+  },
+  {
+    name: "Disney+",
+    plans: [
+      {duration: "1 Month", price: 300},
+      {duration: "3 Months", price: 800},
+      {duration: "6 Months", price: 1500},
+      {duration: "12 Months", price: 2800}
+    ],
+    features: ["4K Available", "Marvel + Star Wars", "Shared Access", "Instant Delivery", "Private Lock", "9AM-12AM Free Support", "100% Replacement Guarantee", "Ad-Free"]
+  },
+  {
+    name: "Canva Pro",
+    plans: [
+      {duration: "1 Month", price: 30},
+      {duration: "3 Months", price: 60},
+      {duration: "6 Months", price: 180},
+      {duration: "12 Months", price: 360}
+    ],
+    features: ["Premium Templates", "Unlimited Downloads", "Background Remover", "Brand Kit & Logo Upload", "Stock Photos & Videos", "Cloud Storage", "Instant Delivery", "100% Replacement Guarantee"]
+  },
+  {
+    name: "Hulu",
+    plans: [
+      {duration: "1 Month", price: 200},
+      {duration: "3 Months", price: 550},
+      {duration: "6 Months", price: 1000},
+      {duration: "12 Months", price: 1800}
+    ],
+    features: ["4K Available", "Shared Access", "Instant Delivery", "Private Lock", "9AM-12AM Free Support", "100% Replacement Guarantee", "Ad-Free"]
+  },
+  {
+    name: "Ullu",
+    plans: [
+      {duration: "1 Month", price: 230},
+      {duration: "3 Months", price: 550},
+      {duration: "6 Months", price: 1200},
+      {duration: "12 Months", price: 1800}
+    ],
+    features: ["4K Available", "Shared Access", "Instant Delivery", "Private Lock", "9AM-12AM Free Support", "100% Replacement Guarantee", "Ad-Free"]
+  },
+  {
+    name: "Kooku",
+    plans: [
+      {duration: "1 Month", price: 230},
+      {duration: "3 Months", price: 550},
+      {duration: "6 Months", price: 1200},
+      {duration: "12 Months", price: 1800}
+    ],
+    features: ["4K Available", "Shared Access", "Instant Delivery", "Private Lock", "9AM-12AM Free Support", "100% Replacement Guarantee", "Ad-Free"]
+  },
+  {
+    name: "HBO Max",
+    plans: [
+      {duration: "1 Month", price: 300},
+      {duration: "3 Months", price: 800},
+      {duration: "6 Months", price: 1500},
+      {duration: "12 Months", price: 2800}
+    ],
+    features: ["4K Available", "Shared Access", "Instant Delivery", "Private Lock", "9AM-12AM Free Support", "100% Replacement Guarantee", "Ad-Free"]
+  },
+  {
+    name: "SonyLIV",
+    plans: [
+      {duration: "1 Month", price: 250},
+      {duration: "3 Months", price: 650},
+      {duration: "6 Months", price: 1200},
+      {duration: "12 Months", price: 2500}
+    ],
+    features: ["4K Available", "Shared Access", "Instant Delivery", "Private Lock", "9AM-12AM Free Support", "100% Replacement Guarantee", "Ad-Free"]
+  }
+];
+e": 350}, {"duration": "2 Month", "price": 650}, {"duration": "3 Month", "price": 1000}]}, {"name": "Amazon Prime Video", "plans": [{"duration": "1 Month", "price": 120}, {"duration": "3 Month", "price": 300}, {"duration": "12 Month", "price": 1000}]}, {"name": "Crunchyroll", "plans": [{"duration": "1 Month", "price": 160}, {"duration": "3 Month", "price": 480}, {"duration": "12 Month", "price": 1500}]}, {"name": "YouTube Premium", "plans": [{"duration": "1 Month", "price": 80}]}, {"name": "Chorki", "plans": [{"duration": "1 Month", "price": 150}, {"duration": "3 Month", "price": 400}, {"duration": "6 Month", "price": 800}]}, {"name": "Hoichoi", "plans": [{"duration": "1 Month", "price": 180}, {"duration": "3 Month", "price": 500}, {"duration": "6 Month", "price": 900}]}, {"name": "Disney+", "plans": [{"duration": "1 Month", "price": 300}, {"duration": "3 Month", "price": 800}, {"duration": "6 Month", "price": 1500}, {"duration": "12 Month", "price": 2800}]}, {"name": "Canva Pro", "plans": [{"duration": "1 Month", "price": 30}, {"duration": "3 Month", "price": 90}, {"duration": "6 Month", "price": 180}, {"duration": "12 Month", "price": 360}]}, {"name": "Hulu", "plans": [{"duration": "1 Month", "price": 200}, {"duration": "3 Month", "price": 550}, {"duration": "6 Month", "price": 1000}, {"duration": "12 Month", "price": 1800}]}, {"name": "Ullu", "plans": [{"duration": "1 Month", "price": 230}, {"duration": "3 Month", "price": 550}, {"duration": "6 Month", "price": 1200}, {"duration": "12 Month", "price": 1800}]}, {"name": "Kooku", "plans": [{"duration": "1 Month", "price": 230}, {"duration": "3 Month", "price": 550}, {"duration": "6 Month", "price": 1200}, {"duration": "12 Month", "price": 1800}]}, {"name": "HBO Max", "plans": [{"duration": "1 Month", "price": 300}, {"duration": "3 Month", "price": 800}, {"duration": "6 Month", "price": 1500}, {"duration": "12 Month", "price": 2800}]}, {"name": "CapCut Pro (1 Device)", "plans": [{"duration": "1 Month", "price": 270}, {"duration": "6 Month", "price": 1700}, {"duration": "12 Month", "price": 2000}]}];
 products.forEach((product, i) => {
   const card = document.createElement('article'); card.className = 'card';
   const title = document.createElement('h3'); title.textContent = product.name; card.appendChild(title);
