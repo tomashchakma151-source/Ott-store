@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ott-store.netlify.app/sitemap.xml
