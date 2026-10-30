@@ -70,16 +70,16 @@ const products = [
 const logoUrls={
 netflix:"https://cdn.simpleicons.org/netflix/E50914",
 amazonprime:"https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png",
- crunchyroll:"https://cdn.simpleicons.org/crunchyroll/F47521",
+crunchyroll:"https://cdn.simpleicons.org/crunchyroll/F47521",
 youtube:"https://cdn.simpleicons.org/youtube/FF0000",
- chorki:"https://logo.clearbit.com/chorki.com",
+chorki:"https://logo.clearbit.com/chorki.com",
 hoichoi:"https://logo.clearbit.com/hoichoi.tv",
 disneyplus:"https://cdn.simpleicons.org/disneyplus/FFFFFF",
 canva:"https://cdn.simpleicons.org/canva/00C4CC",
 hulu:"https://cdn.simpleicons.org/hulu/1CE783",
 ullu:"https://logo.clearbit.com/ullu.app",
 kooku:"https://logo.clearbit.com/kooku.com",
-hbomax:"https://cdn.simpleicons.org/hbomax/FFFFFF",
+hbomax:"https://cdn.simpleicons.org/hbomax/8B5CF6",
 sonyliv:"https://logo.clearbit.com/sonyliv.com",
 capcut:"https://cdn.simpleicons.org/capcut/FFFFFF",
 };
@@ -87,7 +87,7 @@ const grid=document.getElementById("productGrid");
 products.forEach((p,i)=>{
  const card=document.createElement("article");card.className="card";card.style.setProperty("--accent",p.color);
  const priceRows=p.prices.map(([label,price],planIndex)=>`<button type="button" class="price-row" data-product="${i}" data-plan="${planIndex}" onclick="selectPlan(${i},${planIndex},this)"><span>${label}</span><b>${price}৳</b></button>`).join("");
- const features=p.features.map(x=>`<li>${x}</li>`).join("");
+ const features=(p.features||[]).map(x=>`<li>${x}</li>`).join("");
  card.innerHTML=`<div class="service-head"><div class="service-logo"><img src="${logoUrls[p.slug]||""}" alt="${p.name} logo" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=letter>${p.name.slice(0,1)}</span>'"></div><div><h3>${p.name}</h3><small>Premium Subscription</small></div></div><div class="prices">${priceRows}</div><ul class="features">${features}</ul><button class="btn buy" onclick="buy(${i})">🛒 Buy Now</button>`;
  grid.appendChild(card);
 });
